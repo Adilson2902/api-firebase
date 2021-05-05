@@ -13,6 +13,9 @@ export class signinController{
         try{
 
             const { email, password} = req.body;
+
+            
+            
             var response;
             
             const respFirebase = await this.SignInFirebase.SignInFirebase(email,password)

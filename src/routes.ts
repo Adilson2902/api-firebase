@@ -10,9 +10,9 @@ routes.get("/",(req:Request,res:Response) =>{
     res.send("Api Firebase");
 })
 
-routes.get("/signin", async (req:Request,res:Response) =>{
+routes.post("/signin", async (req:Request,res:Response) =>{
     try{
-
+      
         signinControler.handle(req,res);
      
     }catch(err){
@@ -20,7 +20,7 @@ routes.get("/signin", async (req:Request,res:Response) =>{
     }
 })
 
-routes.get("/signup", async (req:Request,res:Response) =>{
+routes.post("/signup", async (req:Request,res:Response) =>{
     try{
 
         signUpControler.handle(req,res);
@@ -41,7 +41,7 @@ routes.post("/recordfirestore", async (req:Request,res:Response) =>{
     }
 })
 
-routes.get("/readfirestore", async (req:Request,res:Response) =>{
+routes.post("/readfirestore", async (req:Request,res:Response) =>{
     try{
 
         ReadFirestoreControler.handle(req,res);
@@ -52,7 +52,7 @@ routes.get("/readfirestore", async (req:Request,res:Response) =>{
 })
 
 
-routes.get("/updatefirestore", async (req:Request,res:Response) =>{
+routes.post("/updatefirestore", async (req:Request,res:Response) =>{
     try{
 
         UpdateFirestoreControler.handle(req,res);
@@ -64,7 +64,7 @@ routes.get("/updatefirestore", async (req:Request,res:Response) =>{
 
 
 
-routes.get("/deletefirestore", async (req:Request,res:Response) =>{
+routes.post("/deletefirestore", async (req:Request,res:Response) =>{
     try{
 
         DeleteFirestoreControler.handle(req,res);

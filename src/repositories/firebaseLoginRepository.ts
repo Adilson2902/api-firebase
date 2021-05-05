@@ -18,7 +18,7 @@ export class FirebaseApi implements FirebaseFunctions{
                     response =  {
                         "type":"sucess",
                         "message":"Logado com sucesso",
-                        "data": snapshot.val()
+                        "data": snapshot.val() 
 
                     }
 
@@ -74,7 +74,7 @@ export class FirebaseApi implements FirebaseFunctions{
 
     
 
-    async SignUpFirebase(dados:object,email:string,password:string){
+    async SignUpFirebase(data:object,email:string,password:string){
 
         var response;
         
@@ -93,7 +93,7 @@ export class FirebaseApi implements FirebaseFunctions{
               
 
 
-                await firebase.database().ref("usuarios_api").child(uid).set(dados).then( () =>
+                await firebase.database().ref("usuarios_api").child(uid).set(data).then( () =>
                     response = 
                     {
                         "type":"sucess",
@@ -169,7 +169,7 @@ export class FirebaseApi implements FirebaseFunctions{
     var response;
   
 
-    await firebase.firestore().collection(collection).add({data}).then(
+    await firebase.firestore().collection(collection).add(data).then(
         () => response ={
             "type":"sucess",
             "message":"Dados mandado ao firestore com sucesso"
