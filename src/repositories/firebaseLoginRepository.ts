@@ -10,10 +10,22 @@ export class FirebaseApi implements FirebaseFunctions{
         var response;    
         
         await firebase.auth().signInWithEmailAndPassword(email,password)
-        .then(() => response =  {
-                                    "type":"sucess",
-                                    "message":"Logado com sucesso"
-                                })
+        .then(async (value) => {
+                let uid = value.user.uid;
+
+                await firebase.database().ref("usuarios_api").child(uid).once('value')
+                .then((snapshot) =>{
+                    response =  {
+                        "type":"sucess",
+                        "message":"Logado com sucesso",
+                        "data": snapshot.val()
+
+                    }
+
+                })
+
+
+        })
         .catch((err) =>{
 
             switch(err.code){
@@ -198,7 +210,55 @@ export class FirebaseApi implements FirebaseFunctions{
           return response;
         }
     
-   
+
+    async    UpdateData(doc:string,collection:string,dataupdate:object){
+
+        var response;
+
+        await firebase.firestore().collection(collection).doc(doc).update(dataupdate)
+        .then(() =>  
+                response = {
+                    "type": "sucess",
+                    "message":"Foi atualizado o dado com sucesso"
+                }
+        )
+        .catch((err) =>
+        
+                response = {
+                    "type":"error",
+                    "message":err
+                }
+        )
+
+           return response;         
+
+        }
+        
+
+      async DeleteData(doc:string,collection:string){
+
+        var response;
+
+        await firebase.firestore().collection(collection).doc(doc).delete()
+        .then(() => 
+            response = {
+                "type": "sucess",
+                "message":"Doc Deletado com Sucesso"
+            }
+
+        )
+        .catch((err)  =>
+            response ={
+                "type":"error",
+                "message":err
+
+            }
+        
+        
+        )
+
+        return response;
+      }  
 
 }
 

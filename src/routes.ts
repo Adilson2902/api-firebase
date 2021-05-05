@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { signUpControler, signinControler,ReadFirestoreControler,RecordFirestoreControler}  from './firebase/index'
+import { signUpControler, signinControler,ReadFirestoreControler,RecordFirestoreControler,UpdateFirestoreControler,DeleteFirestoreControler}  from './firebase/index'
 
 const routes = Router();
 
@@ -50,6 +50,30 @@ routes.get("/readfirestore", async (req:Request,res:Response) =>{
         console.log(err)
     }
 })
+
+
+routes.get("/updatefirestore", async (req:Request,res:Response) =>{
+    try{
+
+        UpdateFirestoreControler.handle(req,res);
+     
+    }catch(err){
+        console.log(err)
+    }
+})
+
+
+
+routes.get("/deletefirestore", async (req:Request,res:Response) =>{
+    try{
+
+        DeleteFirestoreControler.handle(req,res);
+     
+    }catch(err){
+        console.log(err)
+    }
+})
+
 
 
 
