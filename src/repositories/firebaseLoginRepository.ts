@@ -5,7 +5,7 @@ export class FirebaseApi implements FirebaseFunctions{
 
     
 
-    async SignInFirebase(email:string,password:string){
+    async SignInFirebase(email:string,password:string,bd:string){
 
         var response;    
         
@@ -13,12 +13,13 @@ export class FirebaseApi implements FirebaseFunctions{
         .then(async (value) => {
                 let uid = value.user.uid;
 
-                await firebase.database().ref("usuarios_api").child(uid).once('value')
+                await firebase.database().ref(bd).child(uid).once('value')
                 .then((snapshot) =>{
                     response =  {
                         "type":"sucess",
                         "message":"Logado com sucesso",
-                        "data": snapshot.val() 
+                        "data": snapshot.val(),
+                        "uid":uid 
 
                     }
 
@@ -74,7 +75,7 @@ export class FirebaseApi implements FirebaseFunctions{
 
     
 
-    async SignUpFirebase(data:object,email:string,password:string){
+    async SignUpFirebase(data:object,email:string,password:string,bd:string){
 
         var response;
         
@@ -93,7 +94,7 @@ export class FirebaseApi implements FirebaseFunctions{
               
 
 
-                await firebase.database().ref("usuarios_api").child(uid).set(data).then( () =>
+                await firebase.database().ref(bd).child(uid).set(data).then( () =>
                     response = 
                     {
                         "type":"sucess",
@@ -175,8 +176,8 @@ export class FirebaseApi implements FirebaseFunctions{
             "message":"Dados mandado ao firestore com sucesso"
         }
     ).catch(err =>{
-        response ={
-            "type":"sucess",
+        response = {
+            "type":"error",
             "message":err
         }
     }) 
@@ -259,6 +260,26 @@ export class FirebaseApi implements FirebaseFunctions{
 
         return response;
       }  
+
+      
+      async UpdateDataRealtime(uid:string,dataupdate:object,bd:string){
+
+        var response;
+        
+        await firebase.database().ref(bd).child(uid).update(dataupdate)
+        .then(() => response = {
+            "type":"sucesso",
+            "message":"dados atualizados com sucesso"
+        })
+        .catch((err) => response ={
+            "type":"error",
+            "message":err
+        } )
+       
+       
+        return response;
+
+      }
 
 }
 

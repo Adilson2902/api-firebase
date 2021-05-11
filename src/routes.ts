@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { signUpControler, signinControler,ReadFirestoreControler,RecordFirestoreControler,UpdateFirestoreControler,DeleteFirestoreControler}  from './firebase/index'
+import { signUpControler, signinControler,UpdateDataRealtimeControler,ReadFirestoreControler,RecordFirestoreControler,UpdateFirestoreControler,DeleteFirestoreControler}  from './firebase/index'
 
 const routes = Router();
 
@@ -29,6 +29,17 @@ routes.post("/signup", async (req:Request,res:Response) =>{
         console.log(err)
     }
 })
+
+routes.post("/updateuser", async (req:Request,res:Response) =>{
+    try{
+
+        UpdateDataRealtimeControler.handle(req,res);
+     
+    }catch(err){
+        console.log(err)
+    }
+})
+
 
 
 routes.post("/recordfirestore", async (req:Request,res:Response) =>{

@@ -11,13 +11,13 @@ export class signUpController{
     async handle(req:Request, res:Response):Promise<Response>{
 
         try{
-            const { email, password, data} = req.body;
+            const { email, password, data, bd } = req.body;
 
         if(data && email && password)
           {
             var response;
             
-            const respFirebase = await this.SignUpFirebase.SignUpFirebase(data,email,password)
+            const respFirebase = await this.SignUpFirebase.SignUpFirebase(data,email,password,bd)
          
             response = res.status(200).send(respFirebase);
 

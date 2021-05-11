@@ -1,9 +1,9 @@
 import { Request,Response } from 'express'
 import { FirebaseApi} from '../repositories/firebaseLoginRepository'
 
-export class signinController{
+export class UpdateDataRealtimeController{
 
-    constructor( private SignInFirebase: FirebaseApi){
+    constructor( private UpdateDataRealtime: FirebaseApi){
 
     }
 
@@ -12,13 +12,10 @@ export class signinController{
 
         try{
 
-            const { email, password, bd} = req.body;
-
-            
-            
+            const { uid,dataupdate,bd } = req.body;
             var response;
             
-            const respFirebase = await this.SignInFirebase.SignInFirebase(email,password,bd)
+            const respFirebase = await this.UpdateDataRealtime.UpdateDataRealtime(uid,dataupdate,bd)
 
            
             response = res.status(200).send(respFirebase);
