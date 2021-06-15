@@ -212,9 +212,10 @@ export class FirebaseApi implements FirebaseFunctions{
         }
     
 
-    async    UpdateData(doc:string,collection:string,dataupdate:object){
+    async    UpdateData(doc:string,collection:string,dataupdate){
 
         var response;
+        
 
         await firebase.firestore().collection(collection).doc(doc).update(dataupdate)
         .then(() =>  
@@ -224,7 +225,7 @@ export class FirebaseApi implements FirebaseFunctions{
                 }
         )
         .catch((err) =>
-        
+                
                 response = {
                     "type":"error",
                     "message":err
