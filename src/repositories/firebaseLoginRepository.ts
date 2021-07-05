@@ -206,7 +206,7 @@ export class FirebaseApi implements FirebaseFunctions{
             
           })
 
-          response = {pedido};
+          response = {"data":pedido};
 
           return response;
         }

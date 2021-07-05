@@ -1,0 +1,247 @@
+FORMAT: 1A
+HOST: https://api-firebase.glitch.me
+
+# Imune - API FBASE
+
+Bem vindo a API Firebase para integração com a APIPASS. Com ela você pode realizar o cadastro e o login de usuários, além da criação, leitura, atualização e deleção de collections.
+
+Veja como é simples:
+
+<img src="https://i.ibb.co/W6zRdCr/api-firebase.jpg" alt="api-firebase" border="0" align="center">
+
+Nossa API suporta nativamente o formato:
+
+- REST
+    - O sistema deve realizar uma chamada para a URL https://api-firebase.glitch.me/, 
+    enviando os parâmetros por meio de POST. O retorno para cada chamada será um 
+    JSON cujo formato é detalhado ao longo desta documentação.
+
+# Firewall e Proxy
+
+Se você utiliza firewall ou proxy, deve realizar a liberação da nossa lista de IPs:
+
+| Comunicação   | Porta
+|:-------|---------------
+|HTTP    | 80
+|HTTPS   | 443
+|FTP     | 20 e 21
+|SFTP    | 22 e 2442
+
+# Headers
+Todas as requisições devem incluir, os seguintes headers:
+```
+Content-Type:application/json
+Accept:application/json
+```
+
+# Parâmetro uid
+
+Ao solicitar a atualização dos dados de um usuário, se faz necessário que você 
+envie no corpo da requisição o parâmetro `uid`. 
+Ele serve como um identificador único do seu usuário em nossa plataforma e 
+pode ser utilizado para consulta de status ou mesmo para proteção contra 
+envios duplicados. 
+
+# Tabela de Status
+
+Algumas chamadas à API irão retornar dois tipos de código. Um `statusCode` e `type`.  
+A seguir, veja a lista de status suportados pela nossa API:
+
+### statusCode
+| Code   | Description   |type
+|:-------|---------------|----------
+|200     | Ok            |sucess
+|201     | Created       |sucess
+|400     | Error         |error
+
+
+# Group Serviços da API
+
+## Cadastrar um novo usuário [/signup]
+
+Este serviço salva um novo usuário no banco de dados.
+
+Veja abaixo o exemplo da chamada de cadastro de usuário:
+
+Em resposta à chamada, a API do Firebase retornará um status de controle:
+
+### Testar o cadastro de um novo usuário [POST]
+
++ Request (application/json)
+
+        {
+            "email": "string",
+            "password": "string",
+            "data": {},
+            "bd": "string"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "type": "sucess",
+            "message": "Usuário Cadastrado com sucesso"
+        }
+
+
+## Login usuário [/signin]
+
+Este serviço faz a autenticação e autorização de um usuário.
+
+Veja abaixo o exemplo da chamada de login de usuário:
+
+Em resposta à chamada, a API do Firebase retornará um status de controle:
+
+### Testar o login de usuário [POST]
+
++ Request (application/json)
+
+        {
+            "email": "string",
+            "password": "string",
+            "bd": "string"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "type": "sucess",
+            "message": "Logado com sucesso",
+            "data": null,
+            "uid": "string"
+        }
+
+
+## Atualizar usuário [/updateuser]
+
+
+Este serviço faz a atualização de um usuário.
+
+Veja abaixo o exemplo da chamada de atualização de um usuário:
+
+Em resposta à chamada, a API do Firebase retornará um status de controle:
+### Testar a atualização de usuário [POST]
+
++ Request (application/json)
+
+        {
+            "email": "string",
+            "password": "string",
+            "bd": "string"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "type": "sucesso",
+            "message": "dados atualizados com sucesso"
+        }
+
+
+## Cadastrar Collection [/recordfirestore]
+
+Este serviço salva uma nova Collection no banco de dados.
+
+Veja abaixo o exemplo da chamada de atualização de um usuário:
+
+Em resposta à chamada, a API do Firebase retornará um status de controle:
+
+### Testar o cadastro de uma Collection [POST]
+
++ Request (application/json)
+
+        {
+            "titleCollection": "string",
+            "data": {}
+        }
+
++ Response 200 (application/json)
+
+        {
+            "type": "sucesso",
+            "message": "dados salvos com sucesso"
+        }
+
+
+## Ver Collection [/readfirestore]
+
+Este serviço mostra uma Collection salva no banco de dados.
+
+Veja abaixo o exemplo da chamada de leitura de uma Collection:
+
+Em resposta à chamada, a API do Firebase retornará um status de controle:
+
+### Testar a leitura de uma Collection [POST]
+
++ Request (application/json)
+
+        {
+            "titleCollection": "string"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "titleCollection": "string",
+            "data": {}
+        }
+
+
+## Atualizar Collection [/updatefirestore]
+
+Este serviço faz a atualização de uma Collection.
+
+Veja abaixo o exemplo da chamada de atualização de um usuário:
+
+Em resposta à chamada, a API do Firebase retornará um status de controle:
+
+### Testar a atualização de uma Collection [POST]
+
++ Request (application/json)
+
+        {
+            "titleCollection": "string",
+            "id": "string",
+            "data": {}
+        }
+
++ Response 200 (application/json)
+
+        {
+            "type": "sucesso",
+            "message": "dados atualizados com sucesso"
+        }
+
+
+## Deletar Collection [/deletefirestore]
+
+Este serviço faz a deleção de uma Collection.
+
+Veja abaixo o exemplo da chamada de atualização de um usuário:
+
+Em resposta à chamada, a API do Firebase retornará um status de controle:
+
+### Testar a deleção de uma Collection [POST]
+
++ Request (application/json)
+
+        {
+            "titleCollection": "string",
+            "id": "string"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "type": "sucesso",
+            "message": "dados removidos com sucesso"
+        }
+
+    
+# Group imunekids.com.br
+
+Somos referência no mercado de serviços de imunização no nordeste do Brasil.
+Há vários anos, entregamos soluções para ampliar resultados no campo da saúde e 
+gerar cada vez mais imunidade entre as pessoas.
+
+Visite [nosso site](http://www.imunekids.com.br)!
