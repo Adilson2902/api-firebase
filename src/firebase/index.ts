@@ -6,6 +6,7 @@ import { UpdateFirestoreController }  from '../controller/UpdateFirestoreControl
 import { DeleteFirestoreController} from '../controller/DeleteFirestoreController'
 import { UpdateDataRealtimeController }  from '../controller/UpdateRealtimeController'
 import { FirebaseApi } from '../repositories/firebaseLoginRepository'
+import { ReadRealtimeController } from '../controller/ReadRealtimeController'
 
 
 const firebaseRepository = new FirebaseApi();
@@ -16,7 +17,9 @@ const RecordFirestoreControler = new RecordFirestoreController(firebaseRepositor
 const UpdateFirestoreControler = new UpdateFirestoreController (firebaseRepository)
 const DeleteFirestoreControler = new DeleteFirestoreController(firebaseRepository)
 const UpdateDataRealtimeControler = new UpdateDataRealtimeController(firebaseRepository)
+const ReadRealtimeControler = new ReadRealtimeController(firebaseRepository)
 
-export {signinControler, signUpControler,UpdateDataRealtimeControler,ReadFirestoreControler,RecordFirestoreControler, DeleteFirestoreControler,UpdateFirestoreControler}
+
+export {signinControler, ReadRealtimeControler,signUpControler,UpdateDataRealtimeControler,ReadFirestoreControler,RecordFirestoreControler, DeleteFirestoreControler,UpdateFirestoreControler}
 
 

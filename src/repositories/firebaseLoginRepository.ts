@@ -282,6 +282,27 @@ export class FirebaseApi implements FirebaseFunctions{
 
       }
 
+      async  ReadRealtime(bd:string,uid:string) {
+       
+            var response;
+            await firebase.database().ref(bd).child(uid).once('value')
+            .then((snapshot) =>{
+                response =  {
+                    "type":"sucess",
+                   
+                    "data": snapshot.val()
+
+                }
+
+            }).catch((err) =>{
+                response ={
+                    "type":"error",
+                    "message":err
+                }
+            })
+          return response 
+      }
+
 }
 
 

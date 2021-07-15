@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { signUpControler, signinControler,UpdateDataRealtimeControler,ReadFirestoreControler,RecordFirestoreControler,UpdateFirestoreControler,DeleteFirestoreControler}  from './firebase/index'
+import { signUpControler, signinControler,UpdateDataRealtimeControler,ReadFirestoreControler,RecordFirestoreControler,UpdateFirestoreControler,DeleteFirestoreControler, ReadRealtimeControler}  from './firebase/index'
 
 const routes = Router();
 
@@ -63,6 +63,8 @@ routes.post("/readfirestore", async (req:Request,res:Response) =>{
 })
 
 
+
+
 routes.post("/updatefirestore", async (req:Request,res:Response) =>{
     try{
 
@@ -86,6 +88,15 @@ routes.post("/deletefirestore", async (req:Request,res:Response) =>{
 })
 
 
+routes.post("/readrealtime", async (req:Request,res:Response) =>{
+    try{
+     
+        ReadRealtimeControler.handle(req,res);
+  
+    }catch(err){
+        console.log(err)
+    }
+})
 
 
 export default routes;
