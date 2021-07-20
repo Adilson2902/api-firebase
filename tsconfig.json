@@ -20,7 +20,8 @@
       "@models/": ["./src/models/"],
       "@config/": ["./src/config/"],
       "@utils/": ["./src/utils/"],
-      "firebase-admin":["../../node_modules/firebase-admin/"]
+      "firebase-admin":["../../node_modules/firebase-admin/"],
+      "firebase":["../../node_modules/firebase"]
     }
   }
 }

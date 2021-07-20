@@ -1,8 +1,5 @@
-import firebase from '../../node_modules/firebase/app'
-import '../../node_modules/firebase/analytics'
-import '../../node_modules/firebase/auth'
-import '../../node_modules/firebase/firestore'
-import '../../node_modules/firebase/database'
+import firebase from 'firebase'
+
 
 require('dotenv').config();
 
