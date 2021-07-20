@@ -1,9 +1,9 @@
 FORMAT: 1A
 HOST: https://api-firebase.glitch.me
 
-# Imune - API FBASE
+# Imune - API FIREBASE
 
-Bem vindo a API Firebase para integração com a APIPASS. Com ela você pode realizar o cadastro e o login de usuários, além da criação, leitura, atualização e deleção de collections.
+Bem vindos a API Firebase para integração com a APIPASS. Com ela você pode realizar o cadastro e o login de usuários, além da criação, leitura, atualização e deleção de collections.
 
 Veja como é simples:
 
@@ -12,7 +12,7 @@ Veja como é simples:
 Nossa API suporta nativamente o formato:
 
 - REST
-    - O sistema deve realizar uma chamada para a URL https://api-firebase.glitch.me/, 
+    - O sistema deve realizar uma chamada para a URL `https://api-firebase.glitch.me/`, 
     enviando os parâmetros por meio de POST. O retorno para cada chamada será um 
     JSON cujo formato é detalhado ao longo desta documentação.
 
@@ -69,19 +69,23 @@ Em resposta à chamada, a API do Firebase retornará um status de controle:
 
 + Request (application/json)
 
-        {
-            "email": "string",
-            "password": "string",
-            "data": {},
-            "bd": "string"
-        }
+    + Body
+
+            {
+                "email": "string",
+                "password": "string",
+                "data": {},
+                "bd": "string"
+            }
 
 + Response 200 (application/json)
 
-        {
-            "type": "sucess",
-            "message": "Usuário Cadastrado com sucesso"
-        }
+    + Body
+
+            {
+                "type": "sucess",
+                "message": "Usuário Cadastrado com sucesso"
+            }
 
 
 ## Login usuário [/signin]
@@ -96,20 +100,24 @@ Em resposta à chamada, a API do Firebase retornará um status de controle:
 
 + Request (application/json)
 
-        {
-            "email": "string",
-            "password": "string",
-            "bd": "string"
-        }
+    + Body
+    
+            {
+                "email": "string",
+                "password": "string",
+                "bd": "string"
+            }
 
 + Response 200 (application/json)
 
-        {
-            "type": "sucess",
-            "message": "Logado com sucesso",
-            "data": null,
-            "uid": "string"
-        }
+    + Body
+    
+            {
+                "type": "sucess",
+                "message": "Logado com sucesso",
+                "data": null,
+                "uid": "string"
+            }
 
 
 ## Atualizar usuário [/updateuser]
@@ -124,18 +132,22 @@ Em resposta à chamada, a API do Firebase retornará um status de controle:
 
 + Request (application/json)
 
-        {
-            "email": "string",
-            "password": "string",
-            "bd": "string"
-        }
+    + Body
+    
+            {
+                "email": "string",
+                "password": "string",
+                "bd": "string"
+            }
 
 + Response 200 (application/json)
 
-        {
-            "type": "sucesso",
-            "message": "dados atualizados com sucesso"
-        }
+    + Body
+    
+            {
+                "type": "sucesso",
+                "message": "dados atualizados com sucesso"
+            }
 
 
 ## Cadastrar Collection [/recordfirestore]
@@ -150,17 +162,21 @@ Em resposta à chamada, a API do Firebase retornará um status de controle:
 
 + Request (application/json)
 
-        {
-            "titleCollection": "string",
-            "data": {}
-        }
+    + Body
+    
+            {
+                "titleCollection": "string",
+                "data": {}
+            }
 
 + Response 200 (application/json)
 
-        {
-            "type": "sucesso",
-            "message": "dados salvos com sucesso"
-        }
+    + Body
+    
+            {
+                "type": "sucesso",
+                "message": "dados salvos com sucesso"
+            }
 
 
 ## Ver Collection [/readfirestore]
@@ -175,16 +191,20 @@ Em resposta à chamada, a API do Firebase retornará um status de controle:
 
 + Request (application/json)
 
-        {
-            "titleCollection": "string"
-        }
+    + Body
+        
+            {
+                "titleCollection": "string"
+            }
 
 + Response 200 (application/json)
 
-        {
-            "titleCollection": "string",
-            "data": {}
-        }
+    + Body
+    
+            {
+                "titleCollection": "string",
+                "data": {}
+            }
 
 
 ## Atualizar Collection [/updatefirestore]
@@ -199,18 +219,22 @@ Em resposta à chamada, a API do Firebase retornará um status de controle:
 
 + Request (application/json)
 
-        {
-            "titleCollection": "string",
-            "id": "string",
-            "data": {}
-        }
+    + Body
+    
+            {
+                "titleCollection": "string",
+                "id": "string",
+                "data": {}
+            }
 
 + Response 200 (application/json)
 
-        {
-            "type": "sucesso",
-            "message": "dados atualizados com sucesso"
-        }
+    + Body
+    
+            {
+                "type": "sucesso",
+                "message": "dados atualizados com sucesso"
+            }
 
 
 ## Deletar Collection [/deletefirestore]
@@ -225,17 +249,21 @@ Em resposta à chamada, a API do Firebase retornará um status de controle:
 
 + Request (application/json)
 
-        {
-            "titleCollection": "string",
-            "id": "string"
-        }
+    + Body
+    
+            {
+                "titleCollection": "string",
+                "id": "string"
+            }
 
 + Response 200 (application/json)
 
-        {
-            "type": "sucesso",
-            "message": "dados removidos com sucesso"
-        }
+    + Body
+    
+            {
+                "type": "sucesso",
+                "message": "dados removidos com sucesso"
+            }
 
     
 # Group imunekids.com.br

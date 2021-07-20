@@ -1,8 +1,8 @@
 export default interface  FirebaseFunctions{
 
-    SignInFirebase(email:string,password:string,bd:string):Promise<any>
+    SignInFirebase(email:string,password:string,bd:string, type:string):Promise<any>
     SignUpFirebase(data:object,email:string,password:string,bd:string):Promise<any>
-    UpdateDataRealtime(uid:string,dataupdate:object,bd:string):Promise<any>
+    UpdateDataRealtime(uid:string,dataupdate:object,bd:string, type:string):Promise<any>
     RecordData(collection:string,data:object):Promise<any>
     ReadDate(collection:string):Promise<any>
     ReadRealtime(bd:string,uid:string):Promise<any>

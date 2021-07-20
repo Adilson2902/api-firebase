@@ -1,9 +1,9 @@
 import { Request,Response } from 'express'
 import { FirebaseApi} from '../repositories/firebaseLoginRepository'
 
-export class UpdateDataRealtimeController{
+export class signinGoogleController{
 
-    constructor( private UpdateDataRealtime: FirebaseApi){
+    constructor( private SignInGoogleFirebase: FirebaseApi){
 
     }
 
@@ -12,14 +12,14 @@ export class UpdateDataRealtimeController{
 
         try{
 
-            const { uid,dataupdate,bd, type } = req.body;
-            var response;
+            const { email, password, bd} = req.body;
 
-            if (type == 'xml'){
-                res.set('Content-Type', 'text/xml');
-            }
             
-            const respFirebase = await this.UpdateDataRealtime.UpdateDataRealtime(uid,dataupdate,bd, type)
+            
+            var response;
+            
+            const respFirebase = await this.SignInGoogleFirebase.SignInGoogle()
+
            
             response = res.status(200).send(respFirebase);
 

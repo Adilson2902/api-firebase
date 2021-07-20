@@ -1,9 +1,9 @@
 import { Request,Response } from 'express'
 import { FirebaseApi} from '../repositories/firebaseLoginRepository'
 
-export class UpdateDataRealtimeController{
+export class UploadStorageController{
 
-    constructor( private UpdateDataRealtime: FirebaseApi){
+    constructor( private UploadStorage: FirebaseApi){
 
     }
 
@@ -12,20 +12,17 @@ export class UpdateDataRealtimeController{
 
         try{
 
-            const { uid,dataupdate,bd, type } = req.body;
+            const { file,project } = req.body;
             var response;
-
-            if (type == 'xml'){
-                res.set('Content-Type', 'text/xml');
-            }
             
-            const respFirebase = await this.UpdateDataRealtime.UpdateDataRealtime(uid,dataupdate,bd, type)
+            const respFirebase = await this.UploadStorage.StorageFirebase(file,project);
+
            
             response = res.status(200).send(respFirebase);
 
             
             
-            return response
+            return response;
 
 
         }catch(err){

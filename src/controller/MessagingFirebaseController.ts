@@ -1,9 +1,9 @@
 import { Request,Response } from 'express'
 import { FirebaseApi} from '../repositories/firebaseLoginRepository'
 
-export class UpdateDataRealtimeController{
+export class MessagingFirebaseController{
 
-    constructor( private UpdateDataRealtime: FirebaseApi){
+    constructor( private MessaginFirebase: FirebaseApi){
 
     }
 
@@ -12,14 +12,11 @@ export class UpdateDataRealtimeController{
 
         try{
 
-            const { uid,dataupdate,bd, type } = req.body;
+            const { text,to } = req.body;
             var response;
-
-            if (type == 'xml'){
-                res.set('Content-Type', 'text/xml');
-            }
             
-            const respFirebase = await this.UpdateDataRealtime.UpdateDataRealtime(uid,dataupdate,bd, type)
+            const respFirebase = await this.MessaginFirebase.sendMessage(text,to)
+
            
             response = res.status(200).send(respFirebase);
 

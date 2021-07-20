@@ -12,18 +12,17 @@ export class signinController{
 
         try{
 
-            const { email, password, bd} = req.body;
+            const { email, password, bd, type} = req.body;
 
-            
-            
             var response;
             
-            const respFirebase = await this.SignInFirebase.SignInFirebase(email,password,bd)
+            const respFirebase = await this.SignInFirebase.SignInFirebase(email,password,bd, type)
 
-           
+            if (type == 'xml'){
+                res.set('Content-Type', 'text/xml');
+            }
+
             response = res.status(200).send(respFirebase);
-
-            
             
             return response
 
@@ -36,5 +35,5 @@ export class signinController{
 
     }
 
-
 }
+

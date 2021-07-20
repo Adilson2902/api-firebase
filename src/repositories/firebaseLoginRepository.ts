@@ -1,11 +1,16 @@
-import FirebaseFunctions from "interfaces/firebaseInterface";
+import FirebaseFunctions from "../interfaces/firebaseInterface";
 import firebase from '../config/firebase'
+import * as admin from 'firebase-admin'
+
+
+var xml = require('xml2js')
+
 
 export class FirebaseApi implements FirebaseFunctions{
 
     
 
-    async SignInFirebase(email:string,password:string,bd:string){
+    async SignInFirebase(email:string,password:string,bd:string, type: string){
 
         var response;    
         
@@ -69,6 +74,16 @@ export class FirebaseApi implements FirebaseFunctions{
               }
         })
 
+        let xmlResponse
+        if (type == 'xml'){
+            const builder = new xml.Builder({
+                renderOpts: { 'pretty': false }
+              });
+            
+            xmlResponse = builder.buildObject(response)
+
+            response = xmlResponse
+        }
 
         return response;
     }
@@ -263,7 +278,7 @@ export class FirebaseApi implements FirebaseFunctions{
       }  
 
       
-      async UpdateDataRealtime(uid:string,dataupdate:object,bd:string){
+      async UpdateDataRealtime(uid:string,dataupdate:object,bd:string, type: string){
 
         var response;
         
@@ -276,7 +291,17 @@ export class FirebaseApi implements FirebaseFunctions{
             "type":"error",
             "message":err
         } )
-       
+
+        let xmlResponse
+        if (type == 'xml'){
+            const builder = new xml.Builder({
+                renderOpts: { 'pretty': false }
+              });
+            
+            xmlResponse = builder.buildObject(response)
+
+            response = xmlResponse
+        }
        
         return response;
 
@@ -303,6 +328,47 @@ export class FirebaseApi implements FirebaseFunctions{
           return response 
       }
 
+
+      async sendMessage(text, to)  {
+        const token = to.id
+
+   
+        var message = {
+          data: {
+            text,
+          },
+          notification: {
+              title: text,
+          },
+          token,
+        };
+      
+        try {
+           
+          const response = await admin.messaging().send(message);
+          var responses; 
+          console.log(`${response} messages were sent successfully`);
+          responses = {
+            message: `${response} messages were sent successfully`,
+            successCount: response,
+            success: true,
+          };
+        } catch (error) {
+          console.log(`Error sending message:`, error);
+          responses = {
+            message: `Error sending message:`,
+            error: error,
+            successCount: 0,
+            success: false,
+          }
+        }
+
+
+        return responses
+      };
+
+
+     
 }
 
 
