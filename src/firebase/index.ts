@@ -7,6 +7,7 @@ import { DeleteFirestoreController} from '../controller/DeleteFirestoreControlle
 import { UpdateDataRealtimeController }  from '../controller/UpdateRealtimeController'
 import { FirebaseApi } from '../repositories/firebaseLoginRepository'
 import { ReadRealtimeController } from '../controller/ReadRealtimeController'
+import { ScoreGameController } from 'src/controller/RecordFirestoreDocController'
 
 
 const firebaseRepository = new FirebaseApi();
@@ -18,8 +19,8 @@ const UpdateFirestoreControler = new UpdateFirestoreController (firebaseReposito
 const DeleteFirestoreControler = new DeleteFirestoreController(firebaseRepository)
 const UpdateDataRealtimeControler = new UpdateDataRealtimeController(firebaseRepository)
 const ReadRealtimeControler = new ReadRealtimeController(firebaseRepository)
+const RecordeFirestoreDocControler = new ScoreGameController(firebaseRepository)
 
-
-export {signinControler, ReadRealtimeControler,signUpControler,UpdateDataRealtimeControler,ReadFirestoreControler,RecordFirestoreControler, DeleteFirestoreControler,UpdateFirestoreControler}
+export {signinControler,RecordeFirestoreDocControler, ReadRealtimeControler,signUpControler,UpdateDataRealtimeControler,ReadFirestoreControler,RecordFirestoreControler, DeleteFirestoreControler,UpdateFirestoreControler}
 
 

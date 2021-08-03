@@ -202,6 +202,27 @@ export class FirebaseApi implements FirebaseFunctions{
     }
 
 
+    async recordFirestoreDoc(collection,doc,data){
+        var response ;
+ 
+        await firebase.firestore().collection(collection).doc(doc).set(data)
+        .then((res) =>{
+            response = {
+                "type":"sucess",
+                "message":res
+            };
+        })
+        .catch((err) =>{
+             response = {
+                 "type":"error",
+                 "message":err
+             };
+        })
+ 
+ 
+        return response;
+     }
+
     async ReadDate(collection:string){
         
         var pedido = []
